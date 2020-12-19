@@ -10,18 +10,26 @@ const jwt = require("jsonwebtoken");
 const jwtKey = "A secret key for JWT";
 var loggedInID = 0;
 
-const PORT = process.env.PORT || 3001;
-
 const verifyJWT = (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Headers', 'Content-type, Authorization');
     next();
 }
 
+app.use(express.json());
+
 const path = require('path');
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+// Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
-const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://shrouded-journey-38552.heroku...'];
 
+const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -32,15 +40,17 @@ const corsOptions = {
       console.log("Origin rejected")
       callback(new Error('Not allowed by CORS'))
     }
-  }
+  },
+  methods: ["GET", "POST"],
+  credentials: true,
 }
+app.use(cors(corsOptions));
 
-app.use(express.json());
-app.use(cors({
+/*app.use(cors({
     origin: ["http://localhost:3000"],
     methods: ["GET", "POST"],
     credentials: true,
-}));
+}));*/
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -236,6 +246,8 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
+
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Running on Port ${PORT}`);
 });
