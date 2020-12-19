@@ -24,10 +24,9 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client/build')));
 // Handle React routing, return all requests to React app
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/App.js'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
-
 
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
@@ -246,6 +245,7 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log(`Running on the following port: 3000`);
+var PORT = 3000;
+app.listen(process.env.PORT, () => {
+    console.log(`Running on the following port: ${PORT}`);
 });
