@@ -45,11 +45,20 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-/*app.use(cors({
-    origin: ["http://localhost:3000"],
+app.use(cors({
+    origin: function (origin, callback) {
+    console.log("** Origin of request " + origin)
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      console.log("Origin acceptable")
+      callback(null, true)
+    } else {
+      console.log("Origin rejected")
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
     methods: ["GET", "POST"],
     credentials: true,
-}));*/
+}));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
