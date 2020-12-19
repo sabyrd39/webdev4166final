@@ -62,7 +62,7 @@ app.use(session({
     },
 }));
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const iter = 10;
 
 const db = mysql.createConnection({
