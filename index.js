@@ -10,10 +10,10 @@ const jwt = require("jsonwebtoken");
 const jwtKey = "A secret key for JWT";
 var loggedInID = 0;
 
-const verifyJWT = (req, res, next) => {
+app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.setHeader('Access-Control-Allow-Headers', 'Content-type, Authorization');
-    next();
+    next(););
 }
 
 app.use(express.json());
@@ -43,7 +43,7 @@ const corsOptions = {
   methods: ["GET", "POST"],
   credentials: true,
 }
-app.use(cors());
+app.use(cors(corsOptions));
 
 /*app.use(cors({
     origin: ["http://localhost:3000"],
