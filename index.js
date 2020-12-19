@@ -62,7 +62,7 @@ const db = mysql.createConnection({
     database : 'sql9374913'
 });
 
-app.post('/register', (req, res) => {
+app.post('/register/', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -94,7 +94,7 @@ app.post('/register', (req, res) => {
     })    
 });
 
-app.get('/budget', (req, res) => {
+app.get('/budget/', (req, res) => {
     if (req.session.user) {
         db.query("SELECT * FROM budget WHERE assignedUserID = ?",  
             req.session.user[0].id,
@@ -133,7 +133,7 @@ app.get('/budget', (req, res) => {
     }
 });
 
-app.post('/addExp', (req, res) => {
+app.post('/addExp/', (req, res) => {
     const expType = req.body.expenseName;
     const expBudget = req.body.expenseBudget;
     const theID = req.body.currentID;
@@ -162,7 +162,7 @@ app.post('/addExp', (req, res) => {
     });
 });
 
-app.post('/rmExp', (req, res) => {
+app.post('/rmExp/', (req, res) => {
     const expType = req.body.expenseName;
     const theID = req.body.currentID;
     db.query("DELETE FROM budget WHERE (title, assignedUserID) = (?, ?)", 
@@ -179,7 +179,7 @@ app.post('/rmExp', (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
+app.post('/login/', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     db.query("SELECT * FROM user WHERE username = ?", 
@@ -208,7 +208,7 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.get('/logout', (req,res) => {
+app.get('/logout/', (req,res) => {
     if (req.session.user) {
         res.clearCookie('userId');
         res.json({loggedIn: false});
@@ -217,7 +217,7 @@ app.get('/logout', (req,res) => {
     }
 });
 
-app.get('/login', (req, res) => {
+app.get('/login/', (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user})
     } else {
@@ -225,7 +225,7 @@ app.get('/login', (req, res) => {
     }
 });
 
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard/', (req, res) => {
     if (loggedInID != 0) {
         res.json({loggedInID: loggedInID});
     } else {
