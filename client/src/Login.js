@@ -16,7 +16,6 @@ function Login() {
     const login = () => {
       Axios.post('http://localhost:3001/login', {username: username, password: password})
       .then((response) => {
-        console.log("SHIT");
         if (response.data === "Incorrect") {
           setLoginWarnings("The password is incorrect.");
         } else if (response.data.message === "No Match User") {
