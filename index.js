@@ -245,7 +245,8 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
-var PORT = 3001;
+const PORT = process.env.PORT = 3001;
 app.listen(process.env.PORT, () => {
+    console.log(`TRUE port: ${process.env.PORT}`);
     console.log(`Running on the following port: ${PORT}`);
 });
