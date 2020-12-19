@@ -18,7 +18,7 @@ const verifyJWT = (req, res, next) => {
 
 app.use(express.json());
 
-const path = require('path');
+/*const path = require('path');
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-}
+}*/
 
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
