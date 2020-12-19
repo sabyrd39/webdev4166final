@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://webdev4166final.herokuapp.com/'];
+const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -245,8 +245,8 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
-const PORT = process.env.PORT = 3001;  
-app.listen(process.env.port, () => {
+const PORT = process.env.PORT || 3001;  
+app.listen(PORT, "0.0.0.0", process.env.port, () => {
     console.log(`TRUE port: ${process.env.PORT}`);
     console.log(`Running on the following port: ${PORT}`);
 });
