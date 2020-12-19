@@ -19,16 +19,9 @@ const verifyJWT = (req, res, next) => {
 }
 
 const path = require('path');
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/build')));
-// Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  });
-}
 
 const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://shrouded-journey-38552.heroku...'];
+
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -243,6 +236,6 @@ app.get('/dashboard', (req, res) => {
     }
 });
 
-app.listen(3001, () => {
-    console.log(`Running on Port 3001`);
+app.listen(PORT, () => {
+    console.log(`Running on Port ${PORT}`);
 });
