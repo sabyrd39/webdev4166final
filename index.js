@@ -130,7 +130,7 @@ app.get('/budget', (req, res) => {
                         var dataLength = result.length;
                         for (var i = 0; i <= dataLength-1; i++) {
                             dataSource.datasets[0].data[i] = result[i].budget;
-                            console.log(datasource.datasets[0]);
+                            console.log(dataSource.datasets[0]);
                             dataSource.labels[i] = result[i].title;
                             var randomColor = Math.floor(Math.random()*16777215).toString(16);
                             dataSource.datasets[0].backgroundColor[i] = '#' + Math.random().toString(16).slice(2, 8).toUpperCase();

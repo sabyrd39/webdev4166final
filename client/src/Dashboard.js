@@ -18,13 +18,13 @@ function Dashboard() {
                 .then(function (res) {
                     if (res === "0") {
                         setLoginWarnings("Error.");
-                    } else if (res === "You have 0 items in your budget to display.") {
+                    } else if (res.data === "You have 0 items in your budget to display.") {
                         setLoginWarnings("You have 0 items in your budget to display.");
-                    } else if (res === "There is not a user signed in. Please return to login") {
+                    } else if (res.data === "There is not a user signed in. Please return to login") {
                         setLoginWarnings("There is not a user signed in. Please return to login");
                     } else {
                         console.log(res.data);
-                        /*var ctx = document.getElementById("myChart1");
+                        var ctx = document.getElementById("myChart1");
                         var myPieChart = new Chart(ctx, {
                             type: 'pie',
                             data: res.data
@@ -38,7 +38,7 @@ function Dashboard() {
                         var myPieChart3 = new Chart(ctx, {
                             type: 'doughnut',
                             data: res.data
-                        });*/
+                        });
 
                         }
                     }
