@@ -11,14 +11,14 @@ const jwtKey = "A secret key for JWT";
 var loggedInID = 0;
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://webdev4166final.herokuapp.com/")
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     next();
   });
 
-  const whitelist = ['http://localhost:3000', 'http://localhost:8080', 'https://webdev4166final.herokuapp.com'];
+  /*const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com'];
   const corsOptions = {
     origin: function (origin, callback) {
       console.log("** Origin of request " + origin)
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
       }
     }
   }
-  app.use(cors(corsOptions))
+  app.use(cors(corsOptions))*/
 
 app.use(express.json());
 
