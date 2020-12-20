@@ -49,7 +49,7 @@ function Dashboard() {
             Axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
-                    Axios.post('http://localhost:3001/addExp', {currentID: currentUserID, expenseName: expenseName, expenseBudget: expenseBudget})
+                    Axios.post('/addExp/', {currentID: currentUserID, expenseName: expenseName, expenseBudget: expenseBudget})
                         .then((response) => {
                             console.log(response.data);
                                 if (response.data === 1) {
@@ -72,7 +72,7 @@ function Dashboard() {
             Axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
-                    Axios.post('http://localhost:3001/rmExp', {currentID: currentUserID, expenseName: expenseName})
+                    Axios.post('/rmExp/', {currentID: currentUserID, expenseName: expenseName})
                         .then((response) => {
                                 if (response.data === 1) {
                                     setLoginWarnings("Item " + expenseName + " has been removed from your monthly budget.")
