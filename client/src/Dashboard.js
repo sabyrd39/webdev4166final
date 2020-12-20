@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Chart from 'chart.js';
-import Axios from 'axios';
+import axios from 'axios';
 import {
     Link
   } from "react-router-dom";
@@ -14,7 +14,7 @@ function Dashboard() {
     Axios.defaults.withCredentials = true;
 
     function getBudget() {
-        Axios.get('/budget/')
+        axios.get('/budget/')
                 .then(function (res) {
                     if (res === "0") {
                         setLoginWarnings("Error.");
@@ -47,10 +47,10 @@ function Dashboard() {
 
         const addExpense = () => {
             if (expenseName !== "") {
-            Axios.get('/login/').then((response) => {
+            axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
-                    Axios.post('/addExp/', {currentID: currentUserID, expenseName: expenseName, expenseBudget: expenseBudget})
+                    axios.post('/addExp/', {currentID: currentUserID, expenseName: expenseName, expenseBudget: expenseBudget})
                         .then((response) => {
                             console.log(response.data);
                                 if (response.data === 1) {
@@ -70,10 +70,10 @@ function Dashboard() {
 
           const removeExpense = () => {
             if (expenseName !== "") {
-            Axios.get('/login/').then((response) => {
+            axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
-                    Axios.post('/rmExp/', {currentID: currentUserID, expenseName: expenseName})
+                    axios.post('/rmExp/', {currentID: currentUserID, expenseName: expenseName})
                         .then((response) => {
                                 if (response.data === 1) {
                                     setLoginWarnings("Item " + expenseName + " has been removed from your monthly budget.")

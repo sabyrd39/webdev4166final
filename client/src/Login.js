@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Axios from 'axios';
+import axios from 'axios';
 import {
   Link
 } from "react-router-dom";
@@ -11,10 +11,10 @@ function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
   
-    Axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
   
     const login = () => {
-      Axios.post('/login/', {username: username, password: password})
+      axios.post('/login/', {username: username, password: password})
       .then((response) => {
         if (response.data === "Incorrect") {
           setLoginWarnings("The password is incorrect.");
@@ -31,7 +31,7 @@ function Login() {
   
     const register = () => {
       if (passwordReg.length > 0) {
-      Axios.post('/register/', {username: usernameReg, password: passwordReg})
+      axios.post('/register/', {username: usernameReg, password: passwordReg})
       .then((response) => {
         if (response.data === "Duplicate") {
           setLoginWarnings("An account with this username already exists.")
@@ -45,7 +45,7 @@ function Login() {
     };
   
     useEffect(() => {
-      Axios.get('/login/').then((response) => {
+      axios.get('/login/', {crossdomain: true}).then((response) => {
         if (response.data.loggedIn === true) {
           setLoginWarnings(response.data.user[0].username + " is currently logged in.");
           var dashButton = document.getElementById('dashboardButton');
@@ -55,7 +55,7 @@ function Login() {
     }, []);
 
     const logout = () => {
-      Axios.get('/logout/')
+      axios.get('/logout/')
       .then((response) => {
         if (response.data.loggedIn === false) {
           setLoginWarnings("The user has been signed out.");
