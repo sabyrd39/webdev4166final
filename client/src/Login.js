@@ -14,7 +14,7 @@ function Login() {
     Axios.defaults.withCredentials = true;
   
     const login = () => {
-      Axios.post('/login/', {username: username, password: password})
+      Axios.post('/login', {username: username, password: password})
       .then((response) => {
         if (response.data === "Incorrect") {
           setLoginWarnings("The password is incorrect.");
@@ -45,7 +45,7 @@ function Login() {
     };
   
     useEffect(() => {
-      Axios.get('/login/').then((response) => {
+      Axios.get('/login').then((response) => {
         if (response.data.loggedIn === true) {
           setLoginWarnings(response.data.user[0].username + " is currently logged in.");
           var dashButton = document.getElementById('dashboardButton');

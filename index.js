@@ -11,27 +11,15 @@ const jwtKey = "A secret key for JWT";
 var loggedInID = 0;
 const path = require('path');
 
-app.use(express.json());
-
-
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://webdev4166final.herokuapp.com/")
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000")
     res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     next();
   });
 
-  if (process.env.NODE_ENV === 'production') {
-    // Serve any static files
-    app.use(express.static(path.join(__dirname, 'client/build')));
-  // Handle React routing, return all requests to React app
-    app.get('*', function(req, res) {
-      res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-    });
-  }
-
-/*const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com/'];
+const whitelist = ['http://localhost:3000/', 'http://localhost:3001/', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
@@ -47,10 +35,22 @@ const corsOptions = {
   credentials: true,
 }
 
-app.use(cors(corsOptions));*/
+app.use(cors(corsOptions));
+
+app.use(express.json());
+
+if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'client/build')));
+  // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
+  }
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(session({
     key: "userId",
