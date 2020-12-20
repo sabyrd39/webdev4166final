@@ -117,6 +117,7 @@ app.get('/budget', (req, res) => {
                     if (result.length === 0) {
                         res.send("You have 0 items in your budget to display.");
                     } else {
+                        console.log("DATA RESULT:" + result);
                         var dataSource = {
                             datasets: [
                                 {
@@ -128,6 +129,7 @@ app.get('/budget', (req, res) => {
                                 labels: []
                             };
                         var dataLength = result.length;
+
                         for (var i = 0; i <= dataLength-1; i++) {
                             dataSource.datasets[0].data[i] = result[i].budget;
                             console.log(dataSource.datasets[0]);
