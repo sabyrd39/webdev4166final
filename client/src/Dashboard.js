@@ -14,7 +14,7 @@ function Dashboard() {
     Axios.defaults.withCredentials = true;
 
     function getBudget() {
-        Axios.get('http://localhost:3001/budget')
+        Axios.get('/budget/')
                 .then(function (res) {
                     if (res === "0") {
                         setLoginWarnings("Error.");
@@ -46,7 +46,7 @@ function Dashboard() {
 
         const addExpense = () => {
             if (expenseName !== "") {
-            Axios.get('http://localhost:3001/login').then((response) => {
+            Axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
                     Axios.post('http://localhost:3001/addExp', {currentID: currentUserID, expenseName: expenseName, expenseBudget: expenseBudget})
@@ -69,7 +69,7 @@ function Dashboard() {
 
           const removeExpense = () => {
             if (expenseName !== "") {
-            Axios.get('http://localhost:3001/login').then((response) => {
+            Axios.get('/login/').then((response) => {
                 if (response.data.loggedIn === true) {
                     var currentUserID = response.data.user[0].id;
                     Axios.post('http://localhost:3001/rmExp', {currentID: currentUserID, expenseName: expenseName})
