@@ -45,9 +45,9 @@ const corsOptions = {
   },
   methods: ["GET", "POST"],
   credentials: true,
-}*/
+}
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
