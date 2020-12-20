@@ -23,7 +23,8 @@ function Dashboard() {
                     } else if (res === "There is not a user signed in. Please return to login") {
                         setLoginWarnings("There is not a user signed in. Please return to login");
                     } else {
-                        var ctx = document.getElementById("myChart1");
+                        console.log(res.data);
+                        /*var ctx = document.getElementById("myChart1");
                         var myPieChart = new Chart(ctx, {
                             type: 'pie',
                             data: res.data
@@ -37,7 +38,7 @@ function Dashboard() {
                         var myPieChart3 = new Chart(ctx, {
                             type: 'doughnut',
                             data: res.data
-                        });
+                        });*/
 
                         }
                     }
