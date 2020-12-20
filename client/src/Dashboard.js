@@ -11,7 +11,7 @@ function Dashboard() {
     const [loginWarnings, setLoginWarnings] = useState('');
     const [expenseBudget, setExpenseBudget] = useState('');
 
-    Axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true;
 
     function getBudget() {
         axios.get('/budget/')
