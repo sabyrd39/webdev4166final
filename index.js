@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     next();
   });
 
-const whitelist = ['http://localhost:3000/', 'http://localhost:3001/', 'https://webdev4166final.herokuapp.com/'];
+const whitelist = ['https://webdev4166final.herokuapp.com/', 'http://localhost:3001/', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
