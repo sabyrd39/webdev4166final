@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     next();
   });
 
-/*const path = require('path');
+const path = require('path');
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/sfc')));
@@ -31,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com/'];
+/*const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
   origin: function (origin, callback) {
     console.log("** Origin of request " + origin)
