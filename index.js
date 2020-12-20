@@ -21,15 +21,14 @@ app.use((req, res, next) => {
     next();
   });
 
-const path = require('path');
-if (process.env.NODE_ENV === 'production') {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, 'client/sfc')));
-// Handle React routing, return all requests to React app
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/sfc', ''));
-  });
-}
+  if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'client/build')));
+  // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
+  }
 
 /*const whitelist = ['http://localhost:3000', 'http://localhost:3001', 'https://webdev4166final.herokuapp.com/'];
 const corsOptions = {
