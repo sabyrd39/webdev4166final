@@ -9,6 +9,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const jwtKey = "A secret key for JWT";
 var loggedInID = 0;
+const path = require('path');
 
 app.use(express.json());
 
