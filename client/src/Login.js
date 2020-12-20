@@ -14,7 +14,7 @@ function Login() {
     Axios.defaults.withCredentials = true;
   
     const login = () => {
-      Axios.post('/login', {username: username, password: password})
+      Axios.post('http://localhost:3001/login', {username: username, password: password})
       .then((response) => {
         if (response.data === "Incorrect") {
           setLoginWarnings("The password is incorrect.");
@@ -31,7 +31,7 @@ function Login() {
   
     const register = () => {
       if (passwordReg.length > 0) {
-      Axios.post('/register', {username: usernameReg, password: passwordReg})
+      Axios.post('http://localhost:3001/register', {username: usernameReg, password: passwordReg})
       .then((response) => {
         if (response.data === "Duplicate") {
           setLoginWarnings("An account with this username already exists.")
@@ -45,7 +45,7 @@ function Login() {
     };
   
     useEffect(() => {
-      Axios.get('/login').then((response) => {
+      Axios.get('http://localhost:3001/login').then((response) => {
         if (response.data.loggedIn === true) {
           setLoginWarnings(response.data.user[0].username + " is currently logged in.");
           var dashButton = document.getElementById('dashboardButton');
@@ -55,7 +55,7 @@ function Login() {
     }, []);
 
     const logout = () => {
-      Axios.get('/logout')
+      Axios.get('http://localhost:3001/logout')
       .then((response) => {
         if (response.data.loggedIn === false) {
           setLoginWarnings("The user has been signed out.");
